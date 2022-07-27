@@ -1,9 +1,7 @@
 
 const initialState = {
     0: {
-        id: 0,
-        text: '',
-        completed: false
+        id: 0
     }
 }
 function getId(state) {
@@ -17,7 +15,7 @@ export default function tasksSlice (state= initialState, action) {
             const id = getId(state)
             return {
                 ...state,
-                [id]: { id, text: '', completed: false }
+                [id]: { id }
             }
         case  'tasks/deleteTask':
             const newTaskList = {...state}

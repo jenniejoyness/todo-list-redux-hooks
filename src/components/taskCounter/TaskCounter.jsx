@@ -1,12 +1,12 @@
 import React from 'react';
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
+import {StyledTaskCounter} from './TaskCounter.style'
 
-const TaskCounter = (props) => {
+const TaskCounter = () => {
+    const uncompletedLength = useSelector(state => state.taskCounter.uncompletedLength)
+
     return (
-        <div className='task-count'>{props.uncompletedLength ? `There is ${props.uncompletedLength} tasks left` : 'Add more todos!' }</div>
+        <StyledTaskCounter>{uncompletedLength ? `There is ${uncompletedLength} tasks left` : 'Add more todos!' }</StyledTaskCounter>
     )
 }
-const mapStateToProps = state => ({
-    uncompletedLength: state.taskCounter.uncompletedLength
-})
-export default connect(mapStateToProps)(TaskCounter)
+export default TaskCounter

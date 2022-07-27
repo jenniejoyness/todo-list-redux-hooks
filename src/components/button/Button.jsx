@@ -1,18 +1,22 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import {useDispatch} from "react-redux";
+import {addTask} from "../../actions/actions";
+import { StyledButton} from './Button.style'
 
 export const Button = (props) => {
+    const dispatch = useDispatch()
     return (
         <div>
-            <button  className='btn' style={{ backgroundColor: props.color }} onClick={() => props.onClick()}>
+            <StyledButton backgroundColor={props.backgroundColor} onClick={() => dispatch(addTask())}>
                 {props.text}
-            </button>
+            </StyledButton>
         </div>
     )
 }
 
 Button.defaultProps = {
-    color: 'steelBlue'
+    backgroundColor: 'steelBlue'
 }
 
 Button.propTypes = {

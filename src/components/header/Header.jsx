@@ -1,9 +1,8 @@
 import React from 'react';
+import {StyledHeader} from "./Header.style";
 
 export const Header = (props) => {
     return (
-        <header>
-            <h1>{props.title}</h1>
-        </header>
+        <StyledHeader>{props.title}</StyledHeader>
     )
 }

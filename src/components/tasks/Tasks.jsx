@@ -1,36 +1,26 @@
-import React, {Component} from 'react'
-import {connect} from "react-redux"
-import {addTask, deleteTask} from '../../actions/actions'
+import React, {useEffect} from 'react'
+import {useSelector, connect} from "react-redux"
 import Task from "../task/Task"
 import Button from "../button/Button"
-import {selectTaskList} from '../selectors/tasks'
-import TaskCounter from '../taskCounter/TaskCounter'
+import {Todo} from './Tasks.style'
 
-
-class Tasks extends Component {
-    render () {
-        return (
+export const Tasks = () => {
+    const tasks = useSelector(state => state.taskList)
+    return (
             <>
-                <TaskCounter uncompletedLength={this.props.uncompletedLength}/>
-                <Button text='Add todo' onClick={this.props.addTask}/>
-                <div className='todo-container'>
-                    {Object.keys(this.props.tasks).map(taskId => {
+                <Button text='Add todo'/>
+                <Todo>
+                    {Object.keys(tasks).map(taskId => {
                         return (
                             <Task
                                 key={taskId}
-                                task={this.props.tasks[taskId]}
-                                onDelete={this.props.deleteTask}
+                                id={taskId}
                             />
                         )
                     })}
-                </div>
+                </Todo>
             </>
         )
-    }
 }
 
-const mapStateToProps = state => ({
-    tasks: selectTaskList(state),
-})
-
-export default connect(mapStateToProps, {addTask, deleteTask})(Tasks)
+export default Tasks
